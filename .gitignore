@@ -1,0 +1,8 @@
+node_modules/
+npm-debug.log*
+.DS_Store
+*.log
+
+# The dataset is generated; regenerate with `npm run generate`.
+# Comment the next line out if you prefer to commit a fixed dataset.
+data/queries.csv

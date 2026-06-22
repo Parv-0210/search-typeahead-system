@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search Typeahead</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">🔎 Search Typeahead</div>
+      <div class="mode">
+        <label class="switch-label">
+          Ranking:
+          <select id="mode">
+            <option value="enhanced">Enhanced (recency-aware)</option>
+            <option value="basic">Basic (by count)</option>
+          </select>
+        </label>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="search-pane">
+        <div class="search-wrap">
+          <div class="search-box">
+            <input
+              id="search"
+              type="text"
+              autocomplete="off"
+              spellcheck="false"
+              placeholder="Start typing… e.g. iph"
+              aria-label="Search"
+              aria-autocomplete="list"
+              aria-controls="suggestions"
+            />
+            <button id="searchBtn" type="button">Search</button>
+          </div>
+          <ul id="suggestions" class="suggestions" role="listbox" hidden></ul>
+          <div id="status" class="status" aria-live="polite"></div>
+        </div>
+
+        <div id="result" class="result-card" hidden>
+          <div class="result-title">Search response</div>
+          <pre id="resultBody"></pre>
+        </div>
+
+        <div class="cache-debug" id="cacheDebug">
+          <span class="muted">Cache routing:</span>
+          <span id="cacheInfo">—</span>
+        </div>
+      </section>
+
+      <aside class="side">
+        <div class="panel">
+          <div class="panel-head">
+            <h2>🔥 Trending</h2>
+            <span class="muted small">recency-ranked</span>
+          </div>
+          <ol id="trending" class="trending"></ol>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <h2>📊 Live metrics</h2>
+            <span class="muted small">auto-refresh</span>
+          </div>
+          <div id="metrics" class="metrics"></div>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="footer muted small">
+      Type to get suggestions (debounced). Submit with Enter or the button to
+      record a search — counts update via batched writes and feed Trending.
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
